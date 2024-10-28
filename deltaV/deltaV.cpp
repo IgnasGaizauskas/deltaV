@@ -127,16 +127,16 @@ public:
       while (has_fuel==true) {
         total_mass = add_active_mass(payload);
         double total_thrust = 0.0;
-        if (deltaV < 295.0 * 1.5) {
-          total_thrust = total_rocket_thrust_air_ejector(altitude, stage_num, dt);
+        //if (deltaV < 295.0 * 1.5) {
+        //  total_thrust = total_rocket_thrust_air_ejector(altitude, stage_num, dt);
           //total_thrust = total_rocket_thrust_subsonic(altitude, stage_num, dt);  
-        }
-        else if ( (deltaV < 295.0 * 15) && (deltaV > 295.0*1.5) ) {
-          total_thrust = total_rocket_thrust_supersonic(altitude, stage_num, dt, deltaV);
-        }
-        else {
+        //}
+        //else if ( (deltaV < 295.0 * 15) && (deltaV > 295.0*1.5) ) {
+        //  total_thrust = total_rocket_thrust_supersonic(altitude, stage_num, dt, deltaV);
+        //}
+        //else {
           total_thrust = total_rocket_thrust(altitude, stage_num, dt);
-        }
+        //}
         
         //total_thrust = total_rocket_thrust(altitude, stage_num, dt);
         //std::cout << "total_mass " << total_mass << "\n";
