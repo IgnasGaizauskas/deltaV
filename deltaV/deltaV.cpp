@@ -44,14 +44,14 @@ public:
 
 class Rocket {
   
-  double add_active_mass(double payload) {
+  double add_active_mass() {
     double tmp_mass = 0.;
     for (auto&& stage : stages) {
       if (stage.mass_m0 > stage.mass_empty) {
         tmp_mass = tmp_mass + stage.mass_m0;
       }
     }
-    return tmp_mass + payload;
+    return tmp_mass;
   };
   double total_rocket_thrust(double altitude, size_t stage_num, double dt) {
     double tmp_thrust = 0.;
@@ -125,7 +125,7 @@ public:
       double acceleration = gravity + 1;
       double dv = 0;
       while (has_fuel==true) {
-        total_mass = add_active_mass(payload);
+        total_mass = add_active_mass() + payload;
         double total_thrust = 0.0;
         //if (deltaV < 295.0 * 1.5) {
         //  total_thrust = total_rocket_thrust_air_ejector(altitude, stage_num, dt);
@@ -216,7 +216,7 @@ int main()
   jupiter->add_stage(liquid_booster);
   jupiter->add_stage(liquid_booster);
 
-  const auto payload = jupiter->solve(9250.0);
+  const auto payload = jupiter->solve(11050.0);
   std::cout << "payload: " << payload << " kg";
 }
 
